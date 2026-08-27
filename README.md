@@ -51,6 +51,7 @@ Available helpers inside the function:
 ## How the Repo Works
 This is a Frida-based React Native instrumentation framework for hooking JavaScript functions inside a running Hermes/RN app on iOS. The architecture has two layers: a Frida/ObjC agent (runs outside Hermes, has native access) and injected Hermes runtime scripts (run inside the JS engine, can touch Metro modules).
 
+```
 run-frida-agent.ps1
   └─ frida-compile core/frida-agent.js → core/frida-agent.bundle.js
   └─ frida -D <device> -f <bundle-id> -l core/frida-agent.bundle.js
@@ -66,6 +67,7 @@ run-frida-agent.ps1
             └─ AFTER bundle loads (8s delay), injects:
                  3. hook_function_names.js  → registers hookFunction(), forceRequireModule(), etc.
                  4. hermes-bootstrap.js → imports ../../hooks.js, inlines it, injects into Hermes
+```
 
 ## Finding a Module by Function Name and Hooking It
 
